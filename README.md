@@ -5,4 +5,4 @@ you probably don't need all the node modules which I've included, I am using thi
 
 I think youll mostly want to look at SRC for app.js, index.js, and the components folders which you sent me. 
 
-They are rendered inside of index.html which is in the public folder
+They are rendered inside of public/views/mainwindow.html which is in the public folder
