@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+    <!-- temp -->
+    <style>
+    .mjrcontainer {
+      height: 100%;
+      width: 250px;
+      /* display: flex; */
+      /* justify-content: center;
+      align-items: center; */
+      padding-top:0px;
+      display: inline-block;
+      float: left;
+    }
+    
+
+    .fileTreeContainer {
+      height: 60%;
+      width: 250px;
+      display: flex;
+      
+    }
+
+    #root{
+      width: 100%;
+      height: 800px; 
+      /* background-color: #38373f; just for a bit*/
+    }
+
+    .arrows{
+      float: left;
+    }
+
+    .sub{
+      height: 100%;
+      width: 250px;
+      margin-right: 0;
+    }
+
+    #wbv{
+      float: left;
+      width:500px;
+      height: 100%;
+      margin: 0px;
+      display: inline-block;    
+    }
+
+    .navbar{
+      background-color: #38373f;
+    }
+
+    .left{
+      float: left;
+    }
+
+
+  
+    </style>
+    
+
+  </head>
+
+
+  <body>
+    <head>
+     
+  </head>
+  <body>
+        <div class="col-md-12 topdrag" id="drag">        </div>
+      <!-- <div class="col-md-12" > -->
+          <!-- <div class = "row" > -->
+          <!-- <nav class="navbar">
+                          <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+                                  <ul class="nav navbar-nav" style="-webkit-app-region: drag" >
+                                    <li class="active"><a href="#">Settings</a></li>
+                                    <li><a href="#">Metrics</a></li>
+                                    <li class='left' ><a href="#">Pause Instance</a></li>
+                                     <li class='left'><a href="#">Upgrade</a></li>
+                                  </ul>
+                        </div>
+          </nav> -->
+       <!-- </div> -->
+      
+      <!-- </div> -->
+       
+  
+      <!-- eventually use a react component instead -->
+
+      <div  id='root'>
+       
+
+      </div>
+      
+     
+   
+
+      
+  
+  
+  
+  </body>
+  
+  
+  
+  
+  <script>
+      const electron = require('electron');
+      const {ipcRenderer} = electron;
+      const ul = document.querySelector('ul')
+      // this module isn't being found delete eventually
+      // var addFileWindow = electron.remote.require('../../main').addFileWindow;      
+
+      
+      function fileAddClick(nodeType){
+        // send a file to the back via opening a new window
+        ipcRenderer.send('file-add-click', {type: nodeType} );
+        console.log(nodeType);
+      }
+
+      function minimizeClick(nodeType){
+        // send a file to the back via opening a new window
+        ipcRenderer.send('file-tree-collapse', {type: nodeType} );
+        console.log(nodeType);
+      }
+
+      function expandClick(nodeType){
+        // send a file to the back via opening a new window
+        ipcRenderer.send('file-tree-expand', {type: nodeType} );
+        console.log(nodeType);
+      }
+  
+      ipcRenderer.on('item:add', function(e, item){
+          const li = document.createElement('li');
+          const itemText = document.createTextNode(item);
+  
+          li.appendChild(itemText);
+          ul.appendChild(li)
+      });
+  
+      
+  
+      // clear items when signal received
+      ipcRenderer.on('item:clear', function(){
+          ul.innerHTML = ''
+      });
+  
+      ul.addEventListener('dblclick', removeItem);
+      
+      function removeItem(e){
+          e.target.remove();
+      }
+  
+  </script>
+  
+
+</html>

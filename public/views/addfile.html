@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Add File to your Computer in the Cloud</title>
+</head>
+
+<body>
+    <h1>im here</h1>
+    <form> 
+        <div> 
+            <label>
+                Add a File Below
+            </label>
+        <div class="row">
+                <input type="text" id="item" autofocus>
+        </div>
+        <div class="row">
+                
+                <input type="file" name="myFile">
+        </div>
+
+        </div>
+        <button type="submit">Add File</button>
+    </form>
+</body>
+
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(e){
+            // keeps it from submitting to a file
+            e.preventDefault();
+            const item = document.querySelector('#item').value;
+            ipcRenderer.send('item:add', item);
+        }
+
+        
+    </script>
+
+

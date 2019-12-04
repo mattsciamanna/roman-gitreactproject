@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+
+body { 
+    /* otherwise the nav will overlay contents*/
+     padding-top: 30px; 
+    }
+
+.h1{
+    color:blue;
+}
+/* --------------- NAVBAR  --------------------------------- */
+nav {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    }
+
+
+
+.topdrag{
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height:30px;
+    width: 100%;
+    -webkit-app-region: drag;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333355;
+  }
+  
+li  {
+    float: left;
+  }
+  
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.active{
+    background-color:#4CAF50;
+}
+
+/* -----------   FILE DIRECTORY ------------------- */
+.folder{
+    width:"50"; 
+    height:"60"
+}
+
+

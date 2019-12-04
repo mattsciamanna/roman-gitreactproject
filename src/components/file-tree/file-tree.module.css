@@ -1,0 +1,63 @@
+@import '../../configs/config.css';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: var(--headerBackground);
+}
+
+.header {
+    background-color: var(--headerBackground);
+    padding: 10px;
+    display: flex;
+}
+
+.icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+    background-image: url('./images/folder-opened.png');
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5 px;
+    color: var(--textColor);
+    font-size: 35px;
+}
+
+.content {
+    flex: 1 1 0;
+    overflow: auto;
+    background-color: #252525;
+}
+
+.createIconsContainer {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.createFile {
+    background-position: center;
+    background-image: url('./images/file-add.png');
+}
+
+.createFolder {
+    margin-left: 10px;
+    background-position: center;
+    background-image: url('./images/folder-add.png');
+}
+
+.minimizeFileTree{
+    margin-left: 0px;
+    background-position: center;
+    background-image: url('./images/minimize.png');
+}

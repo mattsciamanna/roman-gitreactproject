@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../public/css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <h1>  File Dir</h1>
+    <ul><li><img src="../public/images/folder duotone.png" id="folder"></li></ul>
+</body>
+
+
+<script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul')
+
+    ipcRenderer.on('item:add', function(e, item){
+        const li = document.createElement('li');
+        const itemText = document.createTextNode(item);
+
+        li.appendChild(itemText);
+        ul.appendChild(li)
+    });
+
+    // clear items when signal received
+    ipcRenderer.on('item:clear', function(){
+        ul.innerHTML = ''
+    });
+
+    ul.addEventListener('dblclick', removeItem);
+    
+    function removeItem(e){
+        e.target.remove();
+    }
+
+</script>
+</html>

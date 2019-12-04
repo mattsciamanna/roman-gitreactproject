@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/main.css" type="text/css">
+</head>
+<body>
+        <div class="col-md-12 topdrag" id="drag">
+            <h1>hello</h1>
+        </div>
+    <div class="col-md-12" >
+        <div class = "row" >
+        <nav class="navbar">
+                        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+                                <ul class="nav navbar-nav" style="-webkit-app-region: drag" >
+                                  <li class="active"><a href="#">Home</a></li>
+                                  <li><a href="#">World</a></li>
+                                  <li><a href="#">U.S.</a></li>
+                                   <li><a href="#">Politics.</a></li>
+                                    <li><a href="#">Economy</a></li>
+                                <li><a href="#">Buisness</a></li>
+                                <li><a href="#">Tech</a></li>
+                                </ul>
+                      </div>
+        </nav>
+     </div>
+    </div>
+     
+
+
+     <div style="width: 100px; background-color: black">
+      <h1>    Files </h1>
+        <ul></ul>
+    </div>
+    
+
+
+
+</body>
+
+
+
+
+<script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul')
+    
+
+    ipcRenderer.on('item:add', function(e, item){
+        const li = document.createElement('li');
+        const itemText = document.createTextNode(item);
+
+        li.appendChild(itemText);
+        ul.appendChild(li)
+    });
+
+
+    // clear items when signal received
+    ipcRenderer.on('item:clear', function(){
+        ul.innerHTML = ''
+    });
+
+    ul.addEventListener('dblclick', removeItem);
+    
+    function removeItem(e){
+        e.target.remove();
+    }
+
+</script>
+</html>
